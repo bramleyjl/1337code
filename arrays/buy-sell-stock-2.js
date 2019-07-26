@@ -1,14 +1,16 @@
-var prices = [1, 4, 5, 2, 10, 13, 2, 5, 4, 10]
-
 var maxProfit = function(prices) {
-    var max = 0;
-    for(var i = prices.length -1; i > 0; i--){
-        var temp = prices[i]-prices[i-1];
-        if(temp > 0){
-            max += temp; 
+    let totalProfit = 0;
+    let buyPrice = prices[0];
+
+    for(let i = 1; i < prices.length; i++) {
+        if(prices[i] > buyPrice && (prices[i] > prices[i + 1] || (i === prices.length -1))){
+            totalProfit += prices[i] - buyPrice;
+            buyPrice = prices[i + 1];
+        } else if (prices[i] < buyPrice) {
+            buyPrice = prices[i];
         }
     }
-    return max;
+    return totalProfit;
 };
 
-console.log(maxProfit(prices))
+console.log(maxProfit([1,2,3,4,5]));
