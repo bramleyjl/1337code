@@ -1,16 +1,18 @@
 var firstUniqChar = function(s) {
-	let alreadyChecked = new Array;
-	for (var i = 0; i < s.length; i++) {
-		if (alreadyChecked.indexOf(s[i]) !== -1) continue;
-		if (s.indexOf(s[i], i + 1) === -1) {
-			return i;
-		} else {
-			alreadyChecked.push(s[i]);
-		}
-	}
-	return -1;
+  s = s.split('');
+  var checked = {};
+  let unique = {};
+  for (var i = 0; i < s.length; i++) {
+      if (!(s[i] in checked)) {
+          checked[s[i]] = 1;
+          unique[s[i]] = i;
+      } else {
+        delete unique[s[i]];
+      }
+  }
+  var answer = Object.values(unique)[0];
+  return (answer !== undefined) ? answer : -1;
 };
 
-const newString = "four score and seven years ago our fathers brought forth on this continent a new nation";
-
+const newString = "leetcode";
 console.log(firstUniqChar(newString));
