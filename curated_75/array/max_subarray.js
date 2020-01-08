@@ -1,6 +1,6 @@
 var maxSubArray = function(array) {
-  count = array[0];
-  max = array[0];
+  var count = array[0];
+  var max = array[0];
   for (var i = 1; i < array.length; i++) {
     count = (count + array[i] > array[i]) ? count + array[i] : array[i];
     if (count > max) max = count;
